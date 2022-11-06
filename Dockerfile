@@ -1,15 +1,21 @@
-FROM node:19-alpine AS build
+FROM node:lts-alpine3.16 as builder
 
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+
 COPY . .
-RUN yarn
-RUN yarn build
+RUN npm run build && npm prune --production
 
-FROM node:19-alpine as deploy-node
+FROM node:lts-alpine3.16 as runner
+USER node:node
 
 WORKDIR /app
-RUN rm -rf ./*
-COPY --from=build /app/package.json .
-COPY --from=build /app/build .
-RUN yarn --prod
-CMD ["node", "index.js"]
+COPY --from=builder --chown=node:node /app/build ./build
+COPY --from=builder --chown=node:node /app/node_modules ./node_modules
+COPY --chown=node:node package.json .
+
+ENV PORT 3000
+EXPOSE 3000
+
+CMD ["npm", "run", "dev", "--", "--open"]

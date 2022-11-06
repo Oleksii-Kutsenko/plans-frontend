@@ -1,19 +1,18 @@
 {
-	"name": "svelte-docker",
+	"name": "plans-frontend",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir svelte-docker --check . && eslint .",
-		"format": "prettier --plugin-search-dir svelte-docker --write ."
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/adapter-static": "^1.0.0-next.47",
+		"@sveltejs/adapter-node": "next",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
@@ -29,8 +28,5 @@
 		"typescript": "^4.7.4",
 		"vite": "^3.1.0"
 	},
-	"type": "module",
-	"dependencies": {
-		"@sveltejs/adapter-node": "^1.0.0-next.100"
-	}
+	"type": "module"
 }

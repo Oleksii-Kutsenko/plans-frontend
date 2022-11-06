@@ -1,11 +1,12 @@
-version: '3'
-
+version: "3"
 services:
-  app-node:
-    image: svetle-docker-node
+  app:
+    image: svetle-docker
     build:
       context: .
       dockerfile: Dockerfile
-      target: deploy-node
+      target: runner
     ports:
       - "3000:3000"
+    volumes:
+      - ./:/app

@@ -1,6 +1,8 @@
-node_modules
-.eslint*
-.prettier*
+.git
+.svelte-kit
+build
+node_modules/
+.dockerignore
+.gitignore
+Dockerfile
 README.md
-.svetle-kit
-buildO
